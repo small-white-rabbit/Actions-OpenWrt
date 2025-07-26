@@ -1,5 +1,5 @@
-name: Release_Redmi-AX6 plus（imm） 
-run-name: Release - ${{ inputs.model || 'RedMi-AX6_plus_imm'}}
+name: Release_wax206 
+run-name: Release - ${{ inputs.model || 'wax206'}}
 
 on:
   workflow_dispatch:
@@ -8,7 +8,7 @@ on:
         required: true
         description: Device Model
         type: choice
-        default: RedMi-AX6_plus_imm
+        default: wax206
         options:
           #- aliyun_ap8220_immwrt
           #- cmcc_rax3000m_immwrt
@@ -17,7 +17,7 @@ on:
           #- jdcloud_ipq60xx_libwrt
           #- n1_immwrt
           #- redmi_ax5_immwrt
-          - RedMi-AX6_plus_imm
+          - wax206
           - RedMi-AX6_plus_libwrt
           #- redmi_ax6000_immwrt21
           #- zn_m2_immwrt
@@ -75,11 +75,11 @@ jobs:
         run: |
           export BUILD_DATE=$(TZ=UTC-8 date +"%y.%m.%d_%H.%M.%S")
           echo "BUILD_DATE=$BUILD_DATE" >> $GITHUB_ENV
-          export BUILD_SRC=$(awk -F"=" '/REPO_URL/ {print $NF}' "./compilecfg/${{ inputs.model || 'RedMi-AX6_plus_imm'}}.ini")
+          export BUILD_SRC=$(awk -F"=" '/REPO_URL/ {print $NF}' "./compilecfg/${{ inputs.model || 'wax206'}}.ini")
           echo "BUILD_SRC=$BUILD_SRC" >> $GITHUB_ENV
 
       - name: 克隆固件代码
-        run: ./sh/pre_clone_action.sh ${{ inputs.model || 'RedMi-AX6_plus_imm'}}
+        run: ./sh/pre_clone_action.sh ${{ inputs.model || 'wax206'}}
 
       - name: 缓存依赖
         uses: actions/cache@v4
@@ -100,7 +100,7 @@ jobs:
           fi
 
       - name: 构建固件
-        run: ./sh/build.sh ${{ inputs.model || 'RedMi-AX6_plus_imm'}}
+        run: ./sh/build.sh ${{ inputs.model || 'wax206'}}
 
 
       - name: 获取内核版本
@@ -146,7 +146,7 @@ jobs:
           echo "源码：${{ env.BUILD_SRC }}" >> release_body.txt
           echo "Kernel: ${{ env.KVER }}" >> release_body.txt
           echo "WIFI密码: 12345678" >> release_body.txt
-          echo "LAN地址: 192.168.123.1" >> release_body.txt
+          echo "LAN地址: 192.168.31.1" >> release_body.txt
           echo "源码最近提交信息:" >> release_body.txt
           echo "${{ env.useVersionInfo }}" >> release_body.txt
           echo "插件：" >> release_body.txt
@@ -156,7 +156,7 @@ jobs:
       - name: 发布固件
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ env.BUILD_DATE }}_${{ inputs.model || 'RedMi-AX6_plus_imm'}}
+          tag_name: ${{ env.BUILD_DATE }}_${{ inputs.model || 'wax206'}}
           files: ${{ inputs.model == 'n1_immwrt' && env.PACKAGED_OUTPUTPATH || './firmware' }}/*.*
           body_path: ./release_body.txt
 
@@ -175,7 +175,7 @@ jobs:
         with:
           #repo:
           keep_latest: 5
-          delete_tag_pattern: ${{ inputs.model || 'RedMi-AX6_plus_imm'}}
+          delete_tag_pattern: ${{ inputs.model || 'wax206'}}
           delete_tags: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
