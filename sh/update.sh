@@ -145,7 +145,7 @@ remove_unwanted_packages() {
 
    # if [[ -d ./package/istore ]]; then
    #    \rm -rf ./package/istore
-    fi
+   # fi
 
     # ipq60xx不支持NSS offload mnet_rx
     # if grep -q "nss_packages" "$BUILD_DIR/$FEEDS_CONF"; then
