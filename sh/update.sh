@@ -75,7 +75,7 @@ update_feeds() {
     # 使用sed删除$FEEDS_CONF文件中的";openwrt-23.05"字符串
     #sed -i 's/;openwrt-23.05//g' "$BUILD_DIR/$FEEDS_CONF"
    # sed -i 's/;js/;lua/g' "$BUILD_DIR/$FEEDS_CONF"
-    fi
+   # fi
 
     # 添加bpf.mk解决更新报错
     if [ ! -f "$BUILD_DIR/include/bpf.mk" ]; then
