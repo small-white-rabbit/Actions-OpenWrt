@@ -70,16 +70,16 @@ sed -i 's/DEPENDS:=@(.*/DEPENDS:=@(TARGET_bcm27xx||TARGET_bcm53xx||TARGET_ipq40x
 #git clone https://github.com/immortalwrt/luci-app-unblockneteasemusic package/luci-app-unblockneteasemusic
 #git clone https://github.com/jerrykuku/luci-app-jd-dailybonus.git package/luci-app-jd-dailybonus
 #git clone https://github.com/jerrykuku/lua-maxminddb.git package/lua-maxminddb
-merge_package https://github.com/jerrykuku/lua-maxminddb lua-maxminddb
-merge_package https://github.com/xiangfeidexiaohuo/extra-ipk extra-ipk/patch/wall-luci/luci-app-vssr
+#merge_package https://github.com/jerrykuku/lua-maxminddb lua-maxminddb
+#merge_package https://github.com/xiangfeidexiaohuo/extra-ipk extra-ipk/patch/wall-luci/luci-app-vssr
 merge_package https://github.com/vernesong/OpenClash OpenClash/luci-app-openclash
 #git clone https://github.com/project-lede/luci-app-godproxy package/luci-app-godproxy
-merge_package https://github.com/ilxp/luci-app-ikoolproxy luci-app-ikoolproxy
+#merge_package https://github.com/ilxp/luci-app-ikoolproxy luci-app-ikoolproxy
 #svn co https://github.com/openwrt/luci/trunk/modules/luci-mod-dashboard feeds/luci/modules/luci-mod-dashboard
 #svn co https://github.com/openwrt/packages/trunk/net/openssh package/openssh
 #svn co https://github.com/openwrt/packages/trunk/libs/libfido2 package/libfido2
 #svn co https://github.com/openwrt/packages/trunk/libs/libcbor package/libcbor
-merge_package https://github.com/ophub/luci-app-amlogic luci-app-amlogic
+#merge_package https://github.com/ophub/luci-app-amlogic luci-app-amlogic
 #svn co https://github.com/breakings/OpenWrt/trunk/general/luci-app-cpufreq package/luci-app-cpufreq
 #svn co https://github.com/breakings/OpenWrt/trunk/general/ntfs3 package/lean/ntfs3
 #svn co https://github.com/Lienol/openwrt-package/trunk/luci-app-socat package/luci-app-socat
@@ -95,20 +95,20 @@ popd
 cp -rf $GITHUB_WORKSPACE/general/brook package/brook
 merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/chinadns-ng
 merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/tcping
-merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/trojan-go
-merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/trojan-plus
+#merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/trojan-go
+#merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/trojan-plus
 #svn co https://github.com/project-openwrt/openwrt/trunk/package/ctcgfw/luci-app-filebrowser package/luci-app-filebrowser
 #svn co https://github.com/project-openwrt/openwrt/trunk/package/ctcgfw/filebrowser package/filebrowser
 #svn co https://github.com/project-openwrt/openwrt/trunk/package/lienol/luci-app-fileassistant package/luci-app-fileassistant
 merge_package https://github.com/xiaorouji/openwrt-passwall openwrt-passwall/luci-app-passwall
-merge_package https://github.com/xiaorouji/openwrt-passwall2 openwrt-passwall2/luci-app-passwall2
+#merge_package https://github.com/xiaorouji/openwrt-passwall2 openwrt-passwall2/luci-app-passwall2
 #cp -rf $GITHUB_WORKSPACE/general/luci-app-passwall package/luci-app-passwall
 #merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/shadowsocks-rust
 #svn co https://github.com/fw876/helloworld/trunk/shadowsocks-rust package/shadowsocks-rust
 #svn co https://github.com/xiaorouji/openwrt-passwall-packages/trunk/xray-core package/xray-core
 #svn co https://github.com/xiaorouji/openwrt-passwall-packages/trunk/xray-plugin package/xray-plugin
-cp -rf $GITHUB_WORKSPACE/general/xray-core package/xray-core
-cp -rf $GITHUB_WORKSPACE/general/xray-plugin package/xray-plugin
+#cp -rf $GITHUB_WORKSPACE/general/xray-core package/xray-core
+#cp -rf $GITHUB_WORKSPACE/general/xray-plugin package/xray-plugin
 merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/ssocks
 merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/dns2socks
 merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/ipt2socks
@@ -116,26 +116,26 @@ merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-pas
 merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/pdnsd-alt
 #svn co https://github.com/xiaorouji/openwrt-passwall-packages/trunk/shadowsocksr-libev package/shadowsocksr-libev
 #svn co https://github.com/fw876/helloworld/trunk/shadowsocksr-libev package/shadowsocksr-libev
-merge_package https://github.com/fw876/helloworld helloworld/shadowsocksr-libev
+#merge_package https://github.com/fw876/helloworld helloworld/shadowsocksr-libev
 #svn co https://github.com/fw876/helloworld/trunk/lua-neturl package/lua-neturl
-merge_package https://github.com/fw876/helloworld helloworld/lua-neturl
+#merge_package https://github.com/fw876/helloworld helloworld/lua-neturl
 #svn co https://github.com/fw876/helloworld/trunk/tcping package/tcping
 #merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/v2ray-core
-merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/v2ray-plugin
+#merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/v2ray-plugin
 merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/v2ray-geodata
 #svn co https://github.com/fw876/helloworld/trunk/v2ray-plugin package/v2ray-plugin
 merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/simple-obfs
 #svn co https://github.com/xiaorouji/openwrt-passwall-packages/trunk/kcptun package/kcptun
-merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/trojan
+#merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/trojan
 merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/hysteria
 #svn co https://github.com/xiaorouji/openwrt-passwall-packages/trunk/dns2tcp package/dns2tcp
 #merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/sing-box
 
-merge_package https://github.com/fw876/helloworld helloworld/shadow-tls
-merge_package https://github.com/fw876/helloworld helloworld/tuic-client
+#merge_package https://github.com/fw876/helloworld helloworld/shadow-tls
+#merge_package https://github.com/fw876/helloworld helloworld/tuic-client
 merge_package https://github.com/fw876/helloworld helloworld/dns2tcp
 merge_package https://github.com/fw876/helloworld helloworld/dns2socks-rust
-merge_package https://github.com/fw876/helloworld helloworld/v2ray-core
+#merge_package https://github.com/fw876/helloworld helloworld/v2ray-core
 #merge_package https://github.com/fw876/helloworld helloworld/v2ray-geodata
 #svn co https://github.com/fw876/helloworld/trunk/xray-core package/xray-core
 #svn co https://github.com/fw876/helloworld/trunk/xray-plugin package/xray-plugin
@@ -145,17 +145,17 @@ cp -rf $GITHUB_WORKSPACE/general/gost package/gost
 #svn co https://github.com/kenzok8/openwrt-packages/trunk/gost package/gost
 #svn co https://github.com/project-openwrt/openwrt/trunk/package/ctcgfw/luci-app-gost package/luci-app-gost
 #svn co https://github.com/project-openwrt/openwrt/trunk/package/ctcgfw/gost package/gost
-merge_package https://github.com/kenzok8/openwrt-packages openwrt-packages/luci-app-eqos
+#merge_package https://github.com/kenzok8/openwrt-packages openwrt-packages/luci-app-eqos
 git clone https://github.com/tty228/luci-app-serverchan.git package/luci-app-serverchan
 #svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/luci-app-ssr-plus
-merge_package https://github.com/fw876/helloworld helloworld/luci-app-ssr-plus
+#merge_package https://github.com/fw876/helloworld helloworld/luci-app-ssr-plus
 #svn co https://github.com/fw876/helloworld/trunk/naiveproxy package/naiveproxy
 #merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/naiveproxy
-merge_package https://github.com/fw876/helloworld helloworld/redsocks2
-merge_package https://github.com/rufengsuixing/luci-app-adguardhome luci-app-adguardhome
+#merge_package https://github.com/fw876/helloworld helloworld/redsocks2
+#merge_package https://github.com/rufengsuixing/luci-app-adguardhome luci-app-adguardhome
 merge_package https://github.com/Lienol/openwrt-package openwrt-package/luci-app-filebrowser
-merge_package https://github.com/Lienol/openwrt-package openwrt-package/luci-app-ssr-mudb-server
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-speederv2
+#merge_package https://github.com/Lienol/openwrt-package openwrt-package/luci-app-ssr-mudb-server
+#merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-speederv2
 
 #添加smartdns
 #svn co https://github.com/project-openwrt/openwrt/trunk/package/ntlf9t/smartdns package/smartdns
@@ -164,10 +164,10 @@ merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-
 merge_package https://github.com/kenzok8/openwrt-packages openwrt-packages/luci-app-smartdns
 
 #mosdns
-rm -rf feeds/packages/net/mosdns
-rm -rf feeds/luci/applications/luci-app-mosdns
-git clone -b v5-lua https://github.com/sbwml/luci-app-mosdns package/luci-app-mosdns
-merge_package https://github.com/sbwml/luci-app-mosdns luci-app-mosdns/mosdns
+#rm -rf feeds/packages/net/mosdns
+#rm -rf feeds/luci/applications/luci-app-mosdns
+#git clone -b v5-lua https://github.com/sbwml/luci-app-mosdns package/luci-app-mosdns
+#merge_package https://github.com/sbwml/luci-app-mosdns luci-app-mosdns/mosdns
 
 #修改bypass的makefile
 #git clone https://github.com/garypang13/luci-app-bypass package/luci-app-bypass
@@ -178,7 +178,7 @@ merge_package https://github.com/sbwml/luci-app-mosdns luci-app-mosdns/mosdns
 #添加ddnsto
 #svn co https://github.com/linkease/ddnsto-openwrt/trunk/ddnsto package/ddnsto
 #svn co https://github.com/linkease/ddnsto-openwrt/trunk/luci-app-ddnsto package/luci-app-ddnsto
-git clone https://github.com/sirpdboy/luci-app-ddns-go.git package/ddns-go
+#git clone https://github.com/sirpdboy/luci-app-ddns-go.git package/ddns-go
 #添加udp2raw
 #git clone https://github.com/sensec/openwrt-udp2raw package/openwrt-udp2raw
 merge_package https://github.com/sensec/openwrt-udp2raw openwrt-udp2raw
@@ -188,16 +188,16 @@ sed -i "s/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=f2f90a9a150be94d50af555b536
 sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=20200920\.0/" package/custom/openwrt-udp2raw/Makefile
 
 #themes
-merge_package https://github.com/rosywrt/luci-theme-rosy luci-theme-rosy
+#merge_package https://github.com/rosywrt/luci-theme-rosy luci-theme-rosy
 #git clone https://github.com/rosywrt/luci-theme-purple.git package/luci-theme-purple
 #git clone https://github.com/Leo-Jo-My/luci-theme-opentomcat.git package/luci-theme-opentomcat
-merge_package https://github.com/Leo-Jo-My/luci-theme-opentomcat luci-theme-opentomcat
-merge_package https://github.com/Leo-Jo-My/luci-theme-opentomato luci-theme-opentomato
+#merge_package https://github.com/Leo-Jo-My/luci-theme-opentomcat luci-theme-opentomcat
+#merge_package https://github.com/Leo-Jo-My/luci-theme-opentomato luci-theme-opentomato
 #svn co https://github.com/sirpdboy/luci-theme-opentopd/trunk package/luci-theme-opentopd
 #git clone https://github.com/kevin-morgan/luci-theme-argon-dark.git package/luci-theme-argon-dark
 #svn co https://github.com/kevin-morgan/luci-theme-argon-dark/trunk package/luci-theme-argon-dark
 #svn co https://github.com/openwrt/luci/trunk/themes/luci-theme-openwrt-2020 package/luci-theme-openwrt-2020
-merge_package https://github.com/thinktip/luci-theme-neobird luci-theme-neobird
+#merge_package https://github.com/thinktip/luci-theme-neobird luci-theme-neobird
 rm -rf feeds/luci/themes/luci-theme-argon
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git feeds/luci/themes/luci-theme-argon
 
