@@ -71,10 +71,10 @@ update_feeds() {
     fi
 
     # 检查编译的是否是lua版
-    if [[ "$BUILD_MODEL" == *"lede_lua"* ]]; then
+   # if [[ "$BUILD_MODEL" == *"lede_lua"* ]]; then
     # 使用sed删除$FEEDS_CONF文件中的";openwrt-23.05"字符串
-    sed -i 's/;openwrt-23.05//g' "$BUILD_DIR/$FEEDS_CONF"
-    sed -i 's/;js/;lua/g' "$BUILD_DIR/$FEEDS_CONF"
+    #sed -i 's/;openwrt-23.05//g' "$BUILD_DIR/$FEEDS_CONF"
+   # sed -i 's/;js/;lua/g' "$BUILD_DIR/$FEEDS_CONF"
     fi
 
     # 添加bpf.mk解决更新报错
@@ -96,17 +96,17 @@ update_feeds() {
 
 remove_unwanted_packages() {
     local luci_packages=(
-        "luci-app-passwall" "luci-app-smartdns" "luci-app-ddns-go" "luci-app-rclone"
-        "luci-app-ssr-plus" "luci-app-vssr" "luci-theme-argon" "luci-app-daed" "luci-app-dae"
-        "luci-app-alist" "luci-app-argon-config" "luci-app-homeproxy" "luci-app-haproxy-tcp"
-        "luci-app-openclash" "luci-app-mihomo" "luci-app-appfilter" "luci-app-msd_lite"
+        "luci-app-passwall"  "luci-app-rclone"
+        "luci-theme-argon" "luci-app-daed" "luci-app-dae"
+        "luci-app-argon-config"  "luci-app-haproxy-tcp"
+        "luci-app-openclash"  "luci-app-appfilter" 
     )
     local packages_net=(
-        "haproxy" "xray-core" "xray-plugin" "dns2socks" "alist" "hysteria"
-        "smartdns" "mosdns" "adguardhome" "ddns-go" "naiveproxy" "shadowsocks-rust"
-        "sing-box" "v2ray-core" "v2ray-geodata" "v2ray-plugin" "tuic-client"
-        "chinadns-ng" "ipt2socks" "tcping" "trojan-plus" "simple-obfs"
-        "shadowsocksr-libev" "dae" "daed" "mihomo" "geoview" "tailscale" "open-app-filter"
+        "haproxy" "dns2socks"  "hysteria"
+        "smartdns"  "naiveproxy" 
+        "sing-box" "v2ray-geodata" 
+        "chinadns-ng" "ipt2socks" "tcping"  "simple-obfs"
+         "dae" "daed"  "geoview" "tailscale" "open-app-filter"
         "msd_lite"
     )
     local packages_utils=(
@@ -137,14 +137,14 @@ remove_unwanted_packages() {
         fi
     done
 
-    for pkg in "${fichenx_package[@]}"; do
-        if [[ -d ./feeds/fichenx/$pkg ]]; then
-            \rm -rf ./feeds/fichenx/$pkg
+    #for pkg in "${fichenx_package[@]}"; do
+    #    if [[ -d ./feeds/fichenx/$pkg ]]; then
+    #        \rm -rf ./feeds/fichenx/$pkg
         fi
     done
 
-    if [[ -d ./package/istore ]]; then
-        \rm -rf ./package/istore
+   # if [[ -d ./package/istore ]]; then
+   #    \rm -rf ./package/istore
     fi
 
     # ipq60xx不支持NSS offload mnet_rx
@@ -166,16 +166,14 @@ update_golang() {
 }
 
 install_fichenx() {
-    ./scripts/feeds install -p fichenx -f xray-core xray-plugin dns2tcp dns2socks haproxy hysteria \
-        naiveproxy shadowsocks-rust sing-box v2ray-core v2ray-geodata v2ray-geoview v2ray-plugin \
-        tuic-client chinadns-ng ipt2socks tcping trojan-plus simple-obfs shadowsocksr-libev \
-        luci-app-passwall alist luci-app-alist smartdns luci-app-smartdns v2dat mosdns luci-app-mosdns \
-        adguardhome luci-app-adguardhome ddns-go luci-app-ddns-go taskd luci-lib-xterm luci-lib-taskd \
+    ./scripts/feeds install -p fichenx -f  dns2tcp dns2socks haproxy hysteria \
+        naiveproxy  sing-box  v2ray-geodata v2ray-geoview \
+        chinadns-ng ipt2socks tcping  \
+        luci-app-passwall  v2dat  \
+        taskd luci-lib-xterm luci-lib-taskd \
         luci-app-store quickstart luci-app-quickstart luci-app-istorex luci-app-cloudflarespeedtest \
-        luci-theme-argon netdata luci-app-netdata lucky luci-app-lucky luci-app-openclash luci-app-homeproxy \
-        luci-app-amlogic nikki luci-app-nikki tailscale luci-app-tailscale oaf open-app-filter luci-app-oaf \
-        easytier luci-app-easytier msd_lite luci-app-msd_lite cups luci-app-cupsd \
-	luci-app-argon-config luci-theme-design luci-app-design-config luci-app-watchcat-plus luci-app-wol
+        luci-theme-argon  luci-app-openclash  \
+	luci-app-argon-config  luci-app-wol
 }
 
 install_feeds() {
