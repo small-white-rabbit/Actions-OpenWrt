@@ -139,7 +139,7 @@ remove_unwanted_packages() {
 
     for pkg in "${fichenx_package[@]}"; do
         if [[ -d ./feeds/fichenx/$pkg ]]; then
-    #        \rm -rf ./feeds/fichenx/$pkg
+            \rm -rf ./feeds/fichenx/$pkg
         fi
     done
 
