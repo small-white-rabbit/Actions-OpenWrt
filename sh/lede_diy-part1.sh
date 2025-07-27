@@ -24,21 +24,21 @@ BUILD_MODEL=$1
 #echo 'src-git fichenx https://github.com/fichenx/openwrt-package' >>feeds.conf.default
 
 # 删除注释行
-sed -i '/^#/d' "feeds.conf.default"
+#sed -i '/^#/d' "feeds.conf.default"
 
 # 检查并添加 fichenx/openwrt-package 源
-if ! grep -q "fichenx/openwrt-package" "feeds.conf.default"; then
+#if ! grep -q "fichenx/openwrt-package" "feeds.conf.default"; then
     # 确保文件以换行符结尾
-    [ -z "$(tail -c 1 "feeds.conf.default")" ] || echo "" >>"feeds.conf.default"
+#    [ -z "$(tail -c 1 "feeds.conf.default")" ] || echo "" >>"feeds.conf.default"
     ##echo "src-git small8 https://github.com/kenzok8/small-package" >>"$BUILD_DIR/$FEEDS_CON
-    echo "src-git fichenx https://github.com/fichenx/openwrt-package;js" >>"feeds.conf.default"
-fi
+#    echo "src-git fichenx https://github.com/fichenx/openwrt-package;js" >>"feeds.conf.default"
+#fi
 
 # 根据编译的固件选择不同的软件源
-if [[ "$BUILD_MODEL" == *"lede_lua"* ]]; then
+#if [[ "$BUILD_MODEL" == *"lede_lua"* ]]; then
 # 使用sed删除$FEEDS_CONF文件中的";openwrt-23.05"字符串
-sed -i 's/;openwrt-23.05//g' "feeds.conf.default"
-sed -i 's/;js/;lua/g' "feeds.conf.default"
-fi
+#sed -i 's/;openwrt-23.05//g' "feeds.conf.default"
+#sed -i 's/;js/;lua/g' "feeds.conf.default"
+#fi
 
 
