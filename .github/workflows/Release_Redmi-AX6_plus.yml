@@ -81,26 +81,7 @@ jobs:
           echo "===== 检查 wax206.ini ====="
           cat ./compilecfg/${{ inputs.model || 'wax206'}}.ini || echo "wax206.ini 未找到"
 
-      - name: 移除 xray-core 包
-        run: |
-          # 从 feeds.conf 和 feeds.conf.default 中移除 xray-core
-          for file in ./action_build/feeds.conf ./action_build/feeds.conf.default; do
-            if [ -f "$file" ]; then
-              sed -i '/fichenx\/xray-core/d' "$file"
-            fi
-          done
-          # 从 .config 中移除 xray-core 相关配置
-          if [ -f "./action_build/.config" ]; then
-            sed -i '/CONFIG_PACKAGE_xray-core/d' ./action_build/.config
-          fi
-          # 从 wax206.ini 中移除 xray-core
-          if [ -f "./compilecfg/${{ inputs.model || 'wax206'}}.ini" ]; then
-            sed -i '/xray-core/d' ./compilecfg/${{ inputs.model || 'wax206'}}.ini
-          fi
-          # 清理 feeds 中的 xray-core
-          if [ -d "./action_build/feeds/fichenx/xray-core" ]; then
-            rm -rf ./action_build/feeds/fichenx/xray-core
-          fi
+  
 
       - name: 更新 feeds
         run: |
