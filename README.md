@@ -1,5 +1,13 @@
 **中文** | [上游源代码](https://github.com/P3TERX/Actions-OpenWrt)
 
+
+## Wax206固件为扩容256M固件，如未进行扩容不要刷！！！不要刷！！！不要刷！！！
+
+
+
+
+
+
 <div align="center">
 <h1>Actions-OpenWrt(多设备固件云编译)</h1>
 
