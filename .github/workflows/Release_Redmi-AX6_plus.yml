@@ -69,7 +69,7 @@ jobs:
 
       - name: 克隆固件代码
         run: ./sh/pre_clone_action.sh ${{ inputs.model || 'wax206'}}
-              - name: 调试 feeds 和配置
+      - name: 调试 feeds 和配置
         run: |
           echo "===== 检查 feeds.conf ====="
           cat ./action_build/feeds.conf || echo "feeds.conf 未找到"
