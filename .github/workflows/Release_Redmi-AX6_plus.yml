@@ -69,6 +69,51 @@ jobs:
 
       - name: 克隆固件代码
         run: ./sh/pre_clone_action.sh ${{ inputs.model || 'wax206'}}
+              - name: 调试 feeds 和配置
+        run: |
+          echo "===== 检查 feeds.conf ====="
+          cat ./action_build/feeds.conf || echo "feeds.conf 未找到"
+          echo "===== 检查 feeds.conf.default ====="
+          cat ./action_build/feeds.conf.default || echo "feeds.conf.default 未找到"
+          echo "===== 检查 .config ====="
+          cat ./action_build/.config || echo ".config 未找到"
+          echo "===== 检查 wax206.ini ====="
+          cat ./compilecfg/${{ inputs.model || 'wax206'}}.ini || echo "wax206.ini 未找到"
+
+      - name: 移除指定软件包
+        run: |
+          # 要移除的软件包列表
+          packages="xray-core v2ray-plugin yq shadowsocks-rust-sslocal tuic-client trojan-plus"
+          # 从 feeds.conf 和 feeds.conf.default 中移除相关包
+          for file in ./action_build/feeds.conf ./action_build/feeds.conf.default; do
+            if [ -f "$file" ]; then
+              for pkg in $packages; do
+                sed -i "/$pkg/d" "$file"
+              done
+            fi
+          done
+          # 从 .config 中移除相关包的配置
+          if [ -f "./action_build/.config" ]; then
+            for pkg in $packages; do
+              sed -i "/CONFIG_PACKAGE_${pkg}/d" ./action_build/.config
+            done
+          fi
+          # 从 wax206.ini 中移除相关包
+          if [ -f "./compilecfg/${{ inputs.model || 'wax206'}}.ini" ]; then
+            for pkg in $packages; do
+              sed -i "/$pkg/d" ./compilecfg/${{ inputs.model || 'wax206'}}.ini
+            done
+          fi
+          # 删除 feeds 目录中相关包的源代码
+          for pkg in $packages; do
+            if [ -d "./action_build/feeds/fichenx/$pkg" ]; then
+              rm -rf ./action_build/feeds/fichenx/$pkg
+            fi
+            if [ -d "./action_build/feeds/packages/$pkg" ]; then
+              rm -rf ./action_build/feeds/packages/$pkg
+            fi
+          done
+
 
       - name: 调试 feeds 和配置
         run: |
