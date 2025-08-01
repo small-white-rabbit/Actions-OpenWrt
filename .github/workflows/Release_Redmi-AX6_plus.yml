@@ -83,7 +83,7 @@ jobs:
       - name: 移除指定软件包
         run: |
           # 要移除的软件包列表
-          packages="xray-core v2ray-plugin yq shadowsocks-rust-sslocal tuic-client trojan-plus"
+          packages="xray-core v2ray-plugin  shadowsocks-rust-sslocal tuic-client trojan-plus"
           # 从 feeds.conf 和 feeds.conf.default 中移除相关包
           for file in ./action_build/feeds.conf ./action_build/feeds.conf.default; do
             if [ -f "$file" ]; then
