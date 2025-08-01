@@ -210,6 +210,8 @@ jobs:
           rm -f ./firmware/mt7622-ram-1ddr-bl2.bin
           rm -f ./firmware/mt7622-ram-2ddr-bl2.bin
           rm -f ./firmware/openwrt-mediatek-mt7622-netgear_wax206.manifest
+          rm -f ./firmware/openwrt-mediatek-mt7622-netgear_wax206-initramfs-recovery.itb
+
       
       - name: 发布固件
         uses: softprops/action-gh-release@v2
