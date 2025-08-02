@@ -171,9 +171,8 @@ install_fichenx() {
         chinadns-ng ipt2socks tcping  \
         luci-app-passwall  v2dat  \
         taskd luci-lib-xterm luci-lib-taskd \
-        luci-app-store quickstart luci-app-quickstart luci-app-istorex luci-app-cloudflarespeedtest \
         luci-theme-argon  luci-app-openclash  \
-	luci-app-argon-config  luci-app-wol
+	luci-app-argon-config  luci-app-wol  \
 }
 
 install_feeds() {
@@ -191,25 +190,6 @@ install_feeds() {
     done
 }
 
-fix_default_set() {
-    # 修改默认主题
-    if [ -d "$BUILD_DIR/feeds/luci/collections/" ]; then
-        find "$BUILD_DIR/feeds/luci/collections/" -type f -name "Makefile" -exec sed -i "s/luci-theme-bootstrap/luci-theme-$THEME_SET/g" {} \;
-    fi
-
-    if [ -d "$BUILD_DIR/feeds/fichenx/luci-theme-argon" ]; then
-        find "$BUILD_DIR/feeds/fichenx/luci-theme-argon" -type f -name "cascade*" -exec sed -i 's/--bar-bg/--primary/g' {} \;
-    fi
-
-    install -Dm755 "$BASE_PATH/patches/990_set_argon_primary" "$BUILD_DIR/package/base-files/files/etc/uci-defaults/990_set_argon_primary"
-    install -Dm755 "$BASE_PATH/patches/991_custom_settings" "$BUILD_DIR/package/base-files/files/etc/uci-defaults/991_custom_settings"
-
-    if [ -f "$BUILD_DIR/package/emortal/autocore/files/tempinfo" ]; then
-        if [ -f "$BASE_PATH/patches/tempinfo" ]; then
-            \cp -f "$BASE_PATH/patches/tempinfo" "$BUILD_DIR/package/emortal/autocore/files/tempinfo"
-        fi
-    fi
-}
 
 fix_miniupnpd() {
     local miniupnpd_dir="$BUILD_DIR/feeds/packages/net/miniupnpd"
