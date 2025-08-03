@@ -90,8 +90,8 @@ reset_feeds_conf() {
     # fi
 
     # 更新 feeds
-    ./scripts/feeds clean
-    ./scripts/feeds update -a
+    #./scripts/feeds clean
+    #./scripts/feeds update -a
 }
 
 remove_unwanted_packages() {
