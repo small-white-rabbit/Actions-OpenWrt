@@ -58,17 +58,17 @@ reset_feeds_conf() {
     fi
 }
 
-update_feeds() {
+#update_feeds() {
     # 删除注释行
-    sed -i '/^#/d' "$BUILD_DIR/$FEEDS_CONF"
+    #sed -i '/^#/d' "$BUILD_DIR/$FEEDS_CONF"
 
     # 检查并添加 fichenx/openwrt-package 源
-    if ! grep -q "fichenx/openwrt-package" "$BUILD_DIR/$FEEDS_CONF"; then
+    #if ! grep -q "fichenx/openwrt-package" "$BUILD_DIR/$FEEDS_CONF"; then
         # 确保文件以换行符结尾
-        [ -z "$(tail -c 1 "$BUILD_DIR/$FEEDS_CONF")" ] || echo "" >>"$BUILD_DIR/$FEEDS_CONF"
+        #[ -z "$(tail -c 1 "$BUILD_DIR/$FEEDS_CONF")" ] || echo "" >>"$BUILD_DIR/$FEEDS_CONF"
         ##echo "src-git small8 https://github.com/kenzok8/small-package" >>"$BUILD_DIR/$FEEDS_CONF"
-		echo "src-git fichenx https://github.com/fichenx/openwrt-package;js" >>"$BUILD_DIR/$FEEDS_CONF"
-    fi
+		#echo "src-git fichenx https://github.com/fichenx/openwrt-package;js" >>"$BUILD_DIR/$FEEDS_CONF"
+    #fi
 
     # 检查编译的是否是lua版
     if [[ "$BUILD_MODEL" == *"lede_lua"* ]]; then
