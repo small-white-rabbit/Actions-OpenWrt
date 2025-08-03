@@ -58,41 +58,7 @@ reset_feeds_conf() {
     fi
 }
 
-#update_feeds() {
-    # 删除注释行
-    #sed -i '/^#/d' "$BUILD_DIR/$FEEDS_CONF"
 
-    # 检查并添加 fichenx/openwrt-package 源
-    #if ! grep -q "fichenx/openwrt-package" "$BUILD_DIR/$FEEDS_CONF"; then
-        # 确保文件以换行符结尾
-        #[ -z "$(tail -c 1 "$BUILD_DIR/$FEEDS_CONF")" ] || echo "" >>"$BUILD_DIR/$FEEDS_CONF"
-        ##echo "src-git small8 https://github.com/kenzok8/small-package" >>"$BUILD_DIR/$FEEDS_CONF"
-		#echo "src-git fichenx https://github.com/fichenx/openwrt-package;js" >>"$BUILD_DIR/$FEEDS_CONF"
-    #fi
-
-    # 检查编译的是否是lua版
-    if [[ "$BUILD_MODEL" == *"lede_lua"* ]]; then
-    # 使用sed删除$FEEDS_CONF文件中的";openwrt-23.05"字符串
-    sed -i 's/;openwrt-23.05//g' "$BUILD_DIR/$FEEDS_CONF"
-    sed -i 's/;js/;lua/g' "$BUILD_DIR/$FEEDS_CONF"
-    fi
-
-    # 添加bpf.mk解决更新报错
-    if [ ! -f "$BUILD_DIR/include/bpf.mk" ]; then
-        touch "$BUILD_DIR/include/bpf.mk"
-    fi
-
-    # 切换nss-packages源
-    # if grep -q "nss_packages" "$BUILD_DIR/$FEEDS_CONF"; then
-    #     sed -i '/nss_packages/d' "$BUILD_DIR/$FEEDS_CONF"
-    #     [ -z "$(tail -c 1 "$BUILD_DIR/$FEEDS_CONF")" ] || echo "" >>"$BUILD_DIR/$FEEDS_CONF"
-    #     echo "src-git nss_packages https://github.com/LiBwrt/nss-packages.git" >>"$BUILD_DIR/$FEEDS_CONF"
-    # fi
-
-    # 更新 feeds
-    #./scripts/feeds clean
-    #./scripts/feeds update -a
-}
 
 remove_unwanted_packages() {
     local luci_packages=(
