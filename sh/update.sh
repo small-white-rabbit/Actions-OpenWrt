@@ -777,7 +777,7 @@ main() {
     clone_repo
     clean_up
     reset_feeds_conf
-    update_feeds
+    #update_feeds
     remove_unwanted_packages
     update_homeproxy
     fix_default_set
