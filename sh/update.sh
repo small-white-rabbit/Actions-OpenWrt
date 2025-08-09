@@ -370,7 +370,7 @@ chanage_cpuusage() {
 }
 
 update_tcping() {
-    local tcping_path="$BUILD_DIR/feeds/fichenx/tcping/Makefile"
+    local tcping_path="$BUILD_DIR/feeds/kenzok/tcping/Makefile"
 
     if [ -d "$(dirname "$tcping_path")" ] && [ -f "$tcping_path" ]; then
         \rm -f "$tcping_path"
@@ -696,7 +696,7 @@ add_gecoosac() {
 
 update_proxy_app_menu_location() {
     # passwall
-    local passwall_path="$BUILD_DIR/package/feeds/fichenx/luci-app-passwall/luasrc/controller/passwall.lua"
+    local passwall_path="$BUILD_DIR/package/feeds/kenzok/luci-app-passwall/luasrc/controller/passwall.lua"
     if [ -d "${passwall_path%/*}" ] && [ -f "$passwall_path" ]; then
         local pos=$(grep -n "entry" "$passwall_path" | head -n 1 | awk -F ":" '{print $1}')
         if [ -n "$pos" ]; then
