@@ -165,18 +165,6 @@ update_golang() {
     fi
 }
 
-install_fichenx() {
-    ./scripts/feeds install -p fichenx -f xray-core xray-plugin dns2tcp dns2socks haproxy hysteria \
-        naiveproxy shadowsocks-rust sing-box v2ray-core v2ray-geodata v2ray-geoview v2ray-plugin \
-        tuic-client chinadns-ng ipt2socks tcping trojan-plus simple-obfs shadowsocksr-libev \
-        luci-app-passwall alist luci-app-alist smartdns luci-app-smartdns v2dat mosdns luci-app-mosdns \
-        adguardhome luci-app-adguardhome ddns-go luci-app-ddns-go taskd luci-lib-xterm luci-lib-taskd \
-        luci-app-store quickstart luci-app-quickstart luci-app-istorex luci-app-cloudflarespeedtest \
-        luci-theme-argon netdata luci-app-netdata lucky luci-app-lucky luci-app-openclash luci-app-homeproxy \
-        luci-app-amlogic nikki luci-app-nikki tailscale luci-app-tailscale oaf open-app-filter luci-app-oaf \
-        easytier luci-app-easytier msd_lite luci-app-msd_lite cups luci-app-cupsd \
-	luci-app-argon-config luci-theme-design luci-app-design-config luci-app-watchcat-plus luci-app-wol
-}
 
 install_feeds() {
     ./scripts/feeds update -i
@@ -369,14 +357,7 @@ chanage_cpuusage() {
     install -Dm755 "$BASE_PATH/patches/hnatusage" "$BUILD_DIR/target/linux/mediatek/filogic/base-files/sbin/cpuusage"
 }
 
-update_tcping() {
-    local tcping_path="$BUILD_DIR/feeds/kenzok/tcping/Makefile"
 
-    if [ -d "$(dirname "$tcping_path")" ] && [ -f "$tcping_path" ]; then
-        \rm -f "$tcping_path"
-        curl -L -o "$tcping_path" https://raw.githubusercontent.com/xiaorouji/openwrt-passwall-packages/refs/heads/main/tcping/Makefile
-    fi
-}
 
 set_custom_task() {
     local sh_dir="$BUILD_DIR/package/base-files/files/etc/init.d"
@@ -815,7 +796,6 @@ main() {
     update_ath11k_fw
     # fix_mkpkg_format_invalid
     chanage_cpuusage
-    update_tcping
     set_custom_task
     update_pw
     install_opkg_distfeeds
