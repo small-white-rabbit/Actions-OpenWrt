@@ -63,11 +63,11 @@ update_feeds() {
     sed -i '/^#/d' "$BUILD_DIR/$FEEDS_CONF"
 
     # 检查并添加 fichenx/openwrt-package 源
-    if ! grep -q "kenzok8/openwrt-package" "$BUILD_DIR/$FEEDS_CONF"; then
+    if ! grep -q "fichenx/openwrt-package" "$BUILD_DIR/$FEEDS_CONF"; then
         # 确保文件以换行符结尾
         [ -z "$(tail -c 1 "$BUILD_DIR/$FEEDS_CONF")" ] || echo "" >>"$BUILD_DIR/$FEEDS_CONF"
-        echo "src-git small8 https://github.com/kenzok8/small-package" >>"$BUILD_DIR/$FEEDS_CONF"
-		##echo "src-git fichenx https://github.com/fichenx/openwrt-package;js" >>"$BUILD_DIR/$FEEDS_CONF"
+        ##echo "src-git small8 https://github.com/kenzok8/small-package" >>"$BUILD_DIR/$FEEDS_CONF"
+		echo "src-git fichenx https://github.com/fichenx/openwrt-package;js" >>"$BUILD_DIR/$FEEDS_CONF"
     fi
 
     # 检查编译的是否是lua版
@@ -137,9 +137,9 @@ remove_unwanted_packages() {
         fi
     done
 
-    for pkg in "${small8_package[@]}"; do
-        if [[ -d ./feeds/small8/$pkg ]]; then
-            \rm -rf ./feeds/small8/$pkg
+    for pkg in "${fichenx_package[@]}"; do
+        if [[ -d ./feeds/fichenx/$pkg ]]; then
+            \rm -rf ./feeds/fichenx/$pkg
         fi
     done
 
@@ -165,6 +165,18 @@ update_golang() {
     fi
 }
 
+install_fichenx() {
+    ./scripts/feeds install -p fichenx -f xray-core xray-plugin dns2tcp dns2socks haproxy hysteria \
+        naiveproxy shadowsocks-rust sing-box v2ray-core v2ray-geodata v2ray-geoview v2ray-plugin \
+        tuic-client chinadns-ng ipt2socks tcping trojan-plus simple-obfs shadowsocksr-libev \
+        luci-app-passwall alist luci-app-alist smartdns luci-app-smartdns v2dat mosdns luci-app-mosdns \
+        adguardhome luci-app-adguardhome ddns-go luci-app-ddns-go taskd luci-lib-xterm luci-lib-taskd \
+        luci-app-store quickstart luci-app-quickstart luci-app-istorex luci-app-cloudflarespeedtest \
+        luci-theme-argon netdata luci-app-netdata lucky luci-app-lucky luci-app-openclash luci-app-homeproxy \
+        luci-app-amlogic nikki luci-app-nikki tailscale luci-app-tailscale oaf open-app-filter luci-app-oaf \
+        easytier luci-app-easytier msd_lite luci-app-msd_lite cups luci-app-cupsd \
+	luci-app-argon-config luci-theme-design luci-app-design-config luci-app-watchcat-plus luci-app-wol
+}
 
 install_feeds() {
     ./scripts/feeds update -i
@@ -339,6 +351,18 @@ fix_mkpkg_format_invalid() {
     fi
 }
 
+add_ax6600_led() {
+    local athena_led_dir="$BUILD_DIR/package/emortal/luci-app-athena-led"
+
+    # 删除旧的目录（如果存在）
+    rm -rf "$athena_led_dir" 2>/dev/null
+
+    # 克隆最新的仓库
+    git clone --depth=1 https://github.com/NONGFAH/luci-app-athena-led.git "$athena_led_dir"
+    # 设置执行权限
+    chmod +x "$athena_led_dir/root/usr/sbin/athena-led"
+    chmod +x "$athena_led_dir/root/etc/init.d/athena_led"
+}
 
 chanage_cpuusage() {
     local luci_dir="$BUILD_DIR/feeds/luci/modules/luci-base/root/usr/share/rpcd/ucode/luci"
@@ -357,7 +381,14 @@ chanage_cpuusage() {
     install -Dm755 "$BASE_PATH/patches/hnatusage" "$BUILD_DIR/target/linux/mediatek/filogic/base-files/sbin/cpuusage"
 }
 
+update_tcping() {
+    local tcping_path="$BUILD_DIR/feeds/fichenx/tcping/Makefile"
 
+    if [ -d "$(dirname "$tcping_path")" ] && [ -f "$tcping_path" ]; then
+        \rm -f "$tcping_path"
+        curl -L -o "$tcping_path" https://raw.githubusercontent.com/xiaorouji/openwrt-passwall-packages/refs/heads/main/tcping/Makefile
+    fi
+}
 
 set_custom_task() {
     local sh_dir="$BUILD_DIR/package/base-files/files/etc/init.d"
@@ -393,12 +424,12 @@ EOF
 }
 
 update_pw() {
-    local pw_share_dir="$BUILD_DIR/feeds/kenzok/luci-app-passwall/root/usr/share/passwall"
+    local pw_share_dir="$BUILD_DIR/feeds/fichenx/luci-app-passwall/root/usr/share/passwall"
     local smartdns_lua_path="$pw_share_dir/helper_smartdns_add.lua"
     local rules_dir="$pw_share_dir/rules"
 
     # 清空chnlist
-    # [ -f "$rules_dir/chnlist" ] && echo "" >"$rules_dir/chnlist"
+    [ -f "$rules_dir/chnlist" ] && echo "" >"$rules_dir/chnlist"
 }
 
 install_opkg_distfeeds() {
@@ -677,7 +708,7 @@ add_gecoosac() {
 
 update_proxy_app_menu_location() {
     # passwall
-    local passwall_path="$BUILD_DIR/package/feeds/kenzok/luci-app-passwall/luasrc/controller/passwall.lua"
+    local passwall_path="$BUILD_DIR/package/feeds/fichenx/luci-app-passwall/luasrc/controller/passwall.lua"
     if [ -d "${passwall_path%/*}" ] && [ -f "$passwall_path" ]; then
         local pos=$(grep -n "entry" "$passwall_path" | head -n 1 | awk -F ":" '{print $1}')
         if [ -n "$pos" ]; then
@@ -796,6 +827,8 @@ main() {
     update_ath11k_fw
     # fix_mkpkg_format_invalid
     chanage_cpuusage
+    update_tcping
+    add_ax6600_led
     set_custom_task
     update_pw
     install_opkg_distfeeds
