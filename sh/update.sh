@@ -429,7 +429,7 @@ update_pw() {
     local rules_dir="$pw_share_dir/rules"
 
     # 清空chnlist
-    [ -f "$rules_dir/chnlist" ] && echo "" >"$rules_dir/chnlist"
+    # [ -f "$rules_dir/chnlist" ] && echo "" >"$rules_dir/chnlist"
 }
 
 install_opkg_distfeeds() {
