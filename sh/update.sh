@@ -424,7 +424,7 @@ EOF
 }
 
 update_pw() {
-    local pw_share_dir="$BUILD_DIR/feeds/fichenx/luci-app-passwall/root/usr/share/passwall"
+    local pw_share_dir="$BUILD_DIR/feeds/kenzok/luci-app-passwall/root/usr/share/passwall"
     local smartdns_lua_path="$pw_share_dir/helper_smartdns_add.lua"
     local rules_dir="$pw_share_dir/rules"
 
